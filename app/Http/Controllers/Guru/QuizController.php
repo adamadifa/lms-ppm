@@ -45,7 +45,7 @@ class QuizController extends Controller
     public function createFromMateri(Materi $materi)
     {
         // Check if the materi belongs to the authenticated guru
-        if ($materi->guru_id !== auth()->id()) {
+        if ($materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -84,7 +84,7 @@ class QuizController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        if ($quiz->guru_id !== auth()->id()) {
+        if ($quiz->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -99,7 +99,7 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        if ($quiz->guru_id !== auth()->id()) {
+        if ($quiz->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -113,7 +113,7 @@ class QuizController extends Controller
      */
     public function update(Request $request, Quiz $quiz)
     {
-        if ($quiz->guru_id !== auth()->id()) {
+        if ($quiz->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -163,7 +163,7 @@ class QuizController extends Controller
      */
     public function destroy(Quiz $quiz)
     {
-        if ($quiz->guru_id !== auth()->id()) {
+        if ($quiz->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -176,7 +176,7 @@ class QuizController extends Controller
      */
     public function soal(Quiz $quiz)
     {
-        if ($quiz->guru_id !== auth()->id()) {
+        if ($quiz->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -189,7 +189,7 @@ class QuizController extends Controller
      */
     public function storeSoal(Request $request, Quiz $quiz)
     {
-        if ($quiz->guru_id !== auth()->id()) {
+        if ($quiz->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -236,11 +236,11 @@ class QuizController extends Controller
      */
     public function destroySoal(Quiz $quiz, SoalQuiz $soal)
     {
-        if ($quiz->guru_id !== auth()->id()) {
+        if ($quiz->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
-        if ($soal->quiz_id !== $quiz->id) {
+        if ($soal->quiz_id != $quiz->id) {
             abort(404, 'Soal tidak ditemukan.');
         }
 

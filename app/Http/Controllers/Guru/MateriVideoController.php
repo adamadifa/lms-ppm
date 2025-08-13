@@ -114,7 +114,7 @@ class MateriVideoController extends Controller
      */
     public function show(MateriVideo $materiVideo)
     {
-        if ($materiVideo->materi->guru_id !== auth()->id()) {
+        if ($materiVideo->materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -126,7 +126,7 @@ class MateriVideoController extends Controller
      */
     public function edit(MateriVideo $materiVideo)
     {
-        if ($materiVideo->materi->guru_id !== auth()->id()) {
+        if ($materiVideo->materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -142,7 +142,7 @@ class MateriVideoController extends Controller
      */
     public function update(Request $request, MateriVideo $materiVideo)
     {
-        if ($materiVideo->materi->guru_id !== auth()->id()) {
+        if ($materiVideo->materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -197,7 +197,7 @@ class MateriVideoController extends Controller
      */
     public function destroy(MateriVideo $materiVideo)
     {
-        if ($materiVideo->materi->guru_id !== auth()->id()) {
+        if ($materiVideo->materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -212,7 +212,7 @@ class MateriVideoController extends Controller
      */
     public function showByMateri(Materi $materi)
     {
-        if ($materi->guru_id !== auth()->id()) {
+        if ($materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 

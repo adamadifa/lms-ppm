@@ -43,7 +43,7 @@ class LKSController extends Controller
     public function createFromMateri(Materi $materi)
     {
         // Check if guru owns this materi
-        if ($materi->guru_id !== auth()->id()) {
+        if ($materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -90,7 +90,7 @@ class LKSController extends Controller
      */
     public function show(LembarKerjaSiswa $lks)
     {
-        if ($lks->guru_id !== auth()->id()) {
+        if ($lks->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -103,7 +103,7 @@ class LKSController extends Controller
      */
     public function edit(LembarKerjaSiswa $lks)
     {
-        if ($lks->guru_id !== auth()->id()) {
+        if ($lks->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -116,7 +116,7 @@ class LKSController extends Controller
      */
     public function update(Request $request, LembarKerjaSiswa $lks)
     {
-        if ($lks->guru_id !== auth()->id()) {
+        if ($lks->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -159,7 +159,7 @@ class LKSController extends Controller
      */
     public function destroy(LembarKerjaSiswa $lks)
     {
-        if ($lks->guru_id !== auth()->id()) {
+        if ($lks->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
