@@ -77,22 +77,22 @@ class MateriController extends Controller
     public function show(Materi $materi)
     {
         // Debug information
-        \Log::info('Materi Show Debug', [
-            'materi_id' => $materi->id,
-            'materi_guru_id' => $materi->guru_id,
-            'auth_user_id' => auth()->id(),
-            'auth_user_roles' => auth()->user()->getRoleNames()->toArray(),
-            'materi_exists' => $materi->exists,
-        ]);
+        // \Log::info('Materi Show Debug', [
+        //     'materi_id' => $materi->id,
+        //     'materi_guru_id' => $materi->guru_id,
+        //     'auth_user_id' => auth()->id(),
+        //     'auth_user_roles' => auth()->user()->getRoleNames()->toArray(),
+        //     'materi_exists' => $materi->exists,
+        // ]);
 
         if ($materi->guru_id != auth()->id()) {
-            \Log::error('Unauthorized access to materi', [
-                'materi_id' => $materi->id,
-                'materi_guru_id' => $materi->id,
-                'auth_user_id' => auth()->id(),
-                'guru_id_type' => gettype($materi->guru_id),
-                'auth_id_type' => gettype(auth()->id()),
-            ]);
+            // \Log::error('Unauthorized access to materi', [
+            //     'materi_id' => $materi->id,
+            //     'materi_guru_id' => $materi->id,
+            //     'auth_user_id' => auth()->id(),
+            //     'guru_id_type' => gettype($materi->guru_id),
+            //     'auth_id_type' => gettype(auth()->id()),
+            // ]);
             abort(403, 'Unauthorized action. Materi ID: ' . $materi->id . ', Guru ID: ' . $materi->guru_id . ', Auth User ID: ' . auth()->id());
         }
 
