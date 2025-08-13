@@ -85,11 +85,13 @@ class MateriController extends Controller
             'materi_exists' => $materi->exists,
         ]);
 
-        if ($materi->guru_id !== auth()->id()) {
+        if ($materi->guru_id != auth()->id()) {
             \Log::error('Unauthorized access to materi', [
                 'materi_id' => $materi->id,
-                'materi_guru_id' => $materi->guru_id,
+                'materi_guru_id' => $materi->id,
                 'auth_user_id' => auth()->id(),
+                'guru_id_type' => gettype($materi->guru_id),
+                'auth_id_type' => gettype(auth()->id()),
             ]);
             abort(403, 'Unauthorized action. Materi ID: ' . $materi->id . ', Guru ID: ' . $materi->guru_id . ', Auth User ID: ' . auth()->id());
         }
@@ -108,7 +110,7 @@ class MateriController extends Controller
      */
     public function edit(Materi $materi)
     {
-        if ($materi->guru_id !== auth()->id()) {
+        if ($materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -122,7 +124,7 @@ class MateriController extends Controller
      */
     public function update(Request $request, Materi $materi)
     {
-        if ($materi->guru_id !== auth()->id()) {
+        if ($materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -161,7 +163,7 @@ class MateriController extends Controller
      */
     public function destroy(Materi $materi)
     {
-        if ($materi->guru_id !== auth()->id()) {
+        if ($materi->guru_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
         }
 
