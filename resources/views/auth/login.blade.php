@@ -214,7 +214,7 @@
 
                         <!-- Description -->
                         <p class="text-lg text-blue-200 leading-relaxed max-w-md mb-8">
-                            Platform pembelajaran matematika yang menggabungkan teknologi AI modern dengan metode
+                            Platform pembelajaran matematika yang menggabungkan teknologi modern dengan metode
                             pembelajaran yang efektif untuk mengoptimalkan pemahaman konsep matematika.
                         </p>
 
