@@ -9,6 +9,7 @@ use App\Models\Kelas;
 use App\Models\LembarKerjaSiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class MateriController extends Controller
 {
@@ -75,8 +76,22 @@ class MateriController extends Controller
      */
     public function show(Materi $materi)
     {
+        // Debug information
+        \Log::info('Materi Show Debug', [
+            'materi_id' => $materi->id,
+            'materi_guru_id' => $materi->guru_id,
+            'auth_user_id' => auth()->id(),
+            'auth_user_roles' => auth()->user()->getRoleNames()->toArray(),
+            'materi_exists' => $materi->exists,
+        ]);
+
         if ($materi->guru_id !== auth()->id()) {
-            abort(403, 'Unauthorized action.');
+            \Log::error('Unauthorized access to materi', [
+                'materi_id' => $materi->id,
+                'materi_guru_id' => $materi->guru_id,
+                'auth_user_id' => auth()->id(),
+            ]);
+            abort(403, 'Unauthorized action. Materi ID: ' . $materi->id . ', Guru ID: ' . $materi->guru_id . ', Auth User ID: ' . auth()->id());
         }
 
         // Get LKS related to this materi
