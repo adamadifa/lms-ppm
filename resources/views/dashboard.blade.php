@@ -93,7 +93,8 @@
                     <a href="{{ route('admin.users.create') }}"
                         class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                         <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                         <div>
                             <p class="font-medium text-gray-900">Tambah User</p>
@@ -142,12 +143,13 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm font-medium text-gray-600">Materi Saya</p>
-                                <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\Materi::where('guru_id', auth()->id())->count() }}</p>
+                                <p class="text-2xl font-semibold text-gray-900">
+                                    {{ \App\Models\Materi::where('guru_id', auth()->id())->count() }}</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Total LKS -->
+                    <!-- Total LKPD -->
                     <div class="bg-white rounded-lg shadow p-6">
                         <div class="flex items-center">
                             <div class="p-3 rounded-full bg-green-100 text-green-600">
@@ -158,8 +160,9 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600">LKS Saya</p>
-                                <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\LembarKerjaSiswa::where('guru_id', auth()->id())->count() }}</p>
+                                <p class="text-sm font-medium text-gray-600">LKPD Saya</p>
+                                <p class="text-2xl font-semibold text-gray-900">
+                                    {{ \App\Models\LembarKerjaSiswa::where('guru_id', auth()->id())->count() }}</p>
                             </div>
                         </div>
                     </div>
@@ -176,7 +179,8 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm font-medium text-gray-600">Quiz Saya</p>
-                                <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\Quiz::where('guru_id', auth()->id())->count() }}</p>
+                                <p class="text-2xl font-semibold text-gray-900">
+                                    {{ \App\Models\Quiz::where('guru_id', auth()->id())->count() }}</p>
                             </div>
                         </div>
                     </div>
@@ -189,7 +193,8 @@
                         <a href="{{ route('guru.materi.create') }}"
                             class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                             <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
                             <div>
                                 <p class="font-medium text-gray-900">Tambah Materi</p>
@@ -204,7 +209,7 @@
                                 </path>
                             </svg>
                             <div>
-                                <p class="font-medium text-gray-900">Buat LKS</p>
+                                <p class="font-medium text-gray-900">Buat LKPD</p>
                                 <p class="text-sm text-gray-600">Buat lembar kerja siswa</p>
                             </div>
                         </a>
@@ -238,12 +243,13 @@
                                 </div>
                                 <div class="ml-4">
                                     <p class="text-sm font-medium text-gray-600">Materi Tersedia</p>
-                                    <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\Materi::where('status', 'publikasi')->count() }}</p>
+                                    <p class="text-2xl font-semibold text-gray-900">
+                                        {{ \App\Models\Materi::where('status', 'publikasi')->count() }}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- LKS Tersedia -->
+                        <!-- LKPD Tersedia -->
                         <div class="bg-white rounded-lg shadow p-6">
                             <div class="flex items-center">
                                 <div class="p-3 rounded-full bg-green-100 text-green-600">
@@ -254,8 +260,9 @@
                                     </svg>
                                 </div>
                                 <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">LKS Tersedia</p>
-                                    <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\LembarKerjaSiswa::where('status', 'publikasi')->count() }}</p>
+                                    <p class="text-sm font-medium text-gray-600">LKPD Tersedia</p>
+                                    <p class="text-2xl font-semibold text-gray-900">
+                                        {{ \App\Models\LembarKerjaSiswa::where('status', 'publikasi')->count() }}</p>
                                 </div>
                             </div>
                         </div>
@@ -272,7 +279,8 @@
                                 </div>
                                 <div class="ml-4">
                                     <p class="text-sm font-medium text-gray-600">Quiz Aktif</p>
-                                    <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\Quiz::where('status', 'aktif')->count() }}</p>
+                                    <p class="text-2xl font-semibold text-gray-900">
+                                        {{ \App\Models\Quiz::where('status', 'aktif')->count() }}</p>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +310,7 @@
                                     </path>
                                 </svg>
                                 <div>
-                                    <p class="font-medium text-gray-900">Kerjakan LKS</p>
+                                    <p class="font-medium text-gray-900">Kerjakan LKPD</p>
                                     <p class="text-sm text-gray-600">Lihat lembar kerja</p>
                                 </div>
                             </a>
@@ -331,7 +339,8 @@
                 <div class="flex items-center p-4 bg-gray-50 rounded-lg">
                     <div class="p-2 rounded-full bg-blue-100 text-blue-600 mr-4">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
                             </path>
                         </svg>
                     </div>

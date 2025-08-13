@@ -17,7 +17,17 @@ class HasilQuiz extends Model
         'waktu_mulai',
         'waktu_selesai',
         'nilai',
-        'status'
+        'status',
+        'jumlah_benar',
+        'jumlah_salah',
+        'total_soal'
+    ];
+
+    protected $casts = [
+        'waktu_mulai' => 'datetime',
+        'waktu_selesai' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
 
     public function quiz()

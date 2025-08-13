@@ -33,7 +33,8 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold text-gray-900">{{ $materi->judul }}</h3>
-                            <p class="text-sm text-gray-600">{{ $materi->mataPelajaran->nama }} • {{ $materi->kelas->nama }}</p>
+                            <p class="text-sm text-gray-600">{{ $materi->mataPelajaran->nama }} • {{ $materi->kelas->nama }}
+                            </p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3">
@@ -64,7 +65,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div class="bg-blue-50 p-4 rounded-lg">
                         <div class="flex items-center">
-                            <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                                 </path>
@@ -78,7 +80,8 @@
 
                     <div class="bg-green-50 p-4 rounded-lg">
                         <div class="flex items-center">
-                            <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
                                 </path>
@@ -92,8 +95,10 @@
 
                     <div class="bg-purple-50 p-4 rounded-lg">
                         <div class="flex items-center">
-                            <svg class="w-5 h-5 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                            <svg class="w-5 h-5 text-purple-600 mr-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
                                 </path>
                             </svg>
                             <div>
@@ -131,7 +136,8 @@
                         <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                         </path>
@@ -152,21 +158,22 @@
             </div>
         </div>
 
-        <!-- LKS Section -->
+        <!-- LKPD Section -->
         @if ($lks->count() > 0)
             <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
                 <div class="px-6 py-4 border-b border-gray-200">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h3 class="text-lg font-medium text-gray-900">Lembar Kerja Siswa (LKS)</h3>
-                            <p class="text-sm text-gray-600">Daftar LKS yang dibuat berdasarkan materi ini</p>
+                            <h3 class="text-lg font-medium text-gray-900">Lembar Kerja Peserta Didik (LKPD)</h3>
+                            <p class="text-sm text-gray-600">Daftar LKPD yang dibuat berdasarkan materi ini</p>
                         </div>
                         <a href="{{ route('guru.materi.create-lks', $materi) }}"
                             class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
-                            Tambah LKS
+                            Tambah LKPD
                         </a>
                     </div>
                 </div>
@@ -176,7 +183,7 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Judul LKS
+                                    Judul LKPD
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
@@ -223,13 +230,16 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('guru.lks.show', $l) }}" class="text-blue-600 hover:text-blue-900">Detail</a>
-                                            <a href="{{ route('guru.lks.edit', $l) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            <form action="{{ route('guru.lks.destroy', $l) }}" method="POST" class="inline">
+                                            <a href="{{ route('guru.lks.show', $l) }}"
+                                                class="text-blue-600 hover:text-blue-900">Detail</a>
+                                            <a href="{{ route('guru.lks.edit', $l) }}"
+                                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('guru.lks.destroy', $l) }}" method="POST"
+                                                class="inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus LKS ini?')">
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus LKPD ini?')">
                                                     Hapus
                                                 </button>
                                             </form>
@@ -242,23 +252,25 @@
                 </div>
             </div>
         @else
-            <!-- No LKS Message -->
+            <!-- No LKPD Message -->
             <div class="bg-white rounded-lg shadow p-6 mb-6">
                 <div class="text-center">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                         </path>
                     </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada LKS</h3>
-                    <p class="mt-1 text-sm text-gray-500">Anda belum membuat LKS untuk materi ini.</p>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada LKPD</h3>
+                    <p class="mt-1 text-sm text-gray-500">Anda belum membuat LKPD untuk materi ini.</p>
                     <div class="mt-6">
                         <a href="{{ route('guru.materi.create-lks', $materi) }}"
                             class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
                             <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
-                            Buat LKS Pertama
+                            Buat LKPD Pertama
                         </a>
                     </div>
                 </div>
@@ -273,7 +285,8 @@
                         <div class="p-3 rounded-full bg-red-100 text-red-600">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                </path>
                             </svg>
                         </div>
                         <div>
@@ -285,7 +298,8 @@
                         class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
                         </svg>
                         Kelola Video
                     </a>
@@ -299,12 +313,15 @@
                             <div class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
                                 <div class="aspect-w-16 aspect-h-9 bg-gray-200">
                                     @if ($video->youtube_id)
-                                        <img src="{{ $video->thumbnailUrl }}" alt="{{ $video->judul }}" class="w-full h-full object-cover">
+                                        <img src="{{ $video->thumbnailUrl }}" alt="{{ $video->judul }}"
+                                            class="w-full h-full object-cover">
                                     @else
                                         <div class="flex items-center justify-center h-full">
-                                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                                </path>
                                             </svg>
                                         </div>
                                     @endif
@@ -330,17 +347,21 @@
                 <!-- No Videos Message -->
                 <div class="p-6">
                     <div class="text-center">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
                         </svg>
                         <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada video</h3>
                         <p class="mt-1 text-sm text-gray-500">Anda belum menambahkan video untuk materi ini.</p>
                         <div class="mt-6">
                             <a href="{{ route('guru.materi.videos', $materi) }}"
                                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
-                                <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
                                 Tambah Video Pertama
                             </a>
@@ -366,9 +387,9 @@
                 </a>
                 <a href="{{ route('guru.materi.create-lks', $materi) }}"
                     class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Buat LKS
+                    Buat LKPD
                 </a>
-                <a href="{{ route('guru.quiz.index') }}"
+                <a href="{{ route('guru.materi.create-quiz', $materi) }}"
                     class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                     Buat Quiz
                 </a>

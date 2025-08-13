@@ -32,8 +32,9 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'string', 'in:siswa,guru'],
         ]);
 
         $user = User::create([
@@ -41,6 +42,9 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        // Assign role using Spatie Laravel Permission
+        $user->assignRole($request->role);
 
         event(new Registered($user));
 

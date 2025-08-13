@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Materi;
 use App\Models\MataPelajaran;
 use App\Models\Kelas;
+use App\Models\LembarKerjaSiswa;
+use App\Models\Quiz;
+use App\Models\MateriVideo;
 use Illuminate\Http\Request;
 
 class MateriController extends Controller
@@ -59,7 +62,25 @@ class MateriController extends Controller
             abort(403, 'Anda tidak memiliki akses ke materi ini.');
         }
 
-        return view('siswa.materi.show', compact('materi'));
+        // Get LKPD for this materi
+        $lkpd = LembarKerjaSiswa::where('materi_id', $materi->id)
+            ->where('status', 'publikasi')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Get Quiz for this materi
+        $quiz = Quiz::where('materi_id', $materi->id)
+            ->where('status', 'aktif')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Get Video for this materi
+        $video = MateriVideo::where('materi_id', $materi->id)
+            ->where('status', 'aktif')
+            ->orderBy('urutan', 'asc')
+            ->get();
+
+        return view('siswa.materi.show', compact('materi', 'lkpd', 'quiz', 'video'));
     }
 
     /**

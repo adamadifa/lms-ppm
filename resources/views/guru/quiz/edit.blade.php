@@ -1,59 +1,59 @@
 @extends('layouts.app')
 
-@section('title', 'Buat Quiz Baru')
-@section('subtitle', 'Buat quiz pembelajaran untuk siswa')
+@section('title', 'Edit Quiz')
+@section('subtitle', 'Edit quiz pembelajaran')
 
 @section('content')
-    <div class="p-6">
+    <div class="p-4 sm:p-6">
         <!-- Header Section -->
-        <div class="mb-6">
+        <div class="mb-4 sm:mb-6">
             <div class="flex items-center">
-                @if (isset($materi))
-                    <a href="{{ route('guru.materi.show', $materi) }}" class="text-blue-600 hover:text-blue-800 mr-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </a>
-                    <h2 class="text-2xl font-bold text-gray-900">Buat Quiz untuk Materi: {{ $materi->judul }}</h2>
-                @else
-                    <a href="{{ route('guru.quiz.index') }}" class="text-blue-600 hover:text-blue-800 mr-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
-                            </path>
-                        </svg>
-                    </a>
-                    <h2 class="text-2xl font-bold text-gray-900">Buat Quiz Baru</h2>
-                @endif
+                <a href="{{ route('guru.quiz.index') }}" class="text-blue-600 hover:text-blue-800 mr-2">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+                <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">Edit Quiz: {{ $quiz->judul }}</h2>
             </div>
-            <p class="text-gray-600 mt-1">
-                @if (isset($materi))
-                    Buat quiz pembelajaran untuk materi "{{ $materi->judul }}"
-                @else
-                    Buat quiz pembelajaran yang menarik untuk siswa
-                @endif
-            </p>
+            <p class="text-sm sm:text-base text-gray-600 mt-1">Edit informasi quiz pembelajaran</p>
         </div>
 
         <!-- Form -->
         <div class="bg-white rounded-lg shadow overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                <h3 class="text-lg font-semibold text-gray-900">Form Quiz Baru</h3>
-                <p class="text-sm text-gray-600">Isi informasi quiz yang akan dibuat</p>
+            <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 bg-gray-50">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-900">Form Edit Quiz</h3>
+                <p class="text-xs sm:text-sm text-gray-600">Ubah informasi quiz yang akan diedit</p>
             </div>
 
-            <form action="{{ route('guru.quiz.store') }}" method="POST" class="p-6">
+            <!-- Error Messages -->
+            @if ($errors->any())
+                <div class="px-4 sm:px-6 py-3 sm:py-4 bg-red-50 border-b border-red-200">
+                    <div class="text-xs sm:text-sm text-red-800">
+                        <ul class="list-disc list-inside space-y-1">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
+            <form action="{{ route('guru.quiz.update', $quiz) }}" method="POST" class="p-4 sm:p-6">
                 @csrf
+                @method('PUT')
+
+
 
                 <!-- Judul Quiz -->
-                <div class="mb-6">
+                <div class="mb-4 sm:mb-6">
                     <label for="judul" class="block text-sm font-medium text-gray-700 mb-2">
                         Judul Quiz <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" name="judul" id="judul" value="{{ old('judul') }}"
+                    <input type="text" name="judul" id="judul" value="{{ old('judul', $quiz->judul) }}"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('judul') border-red-500 @enderror"
                         placeholder="Contoh: Quiz Aljabar Dasar" required>
                     @error('judul')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs sm:text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -64,7 +64,7 @@
                     </label>
                     <textarea name="deskripsi" id="deskripsi" rows="3"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('deskripsi') border-red-500 @enderror"
-                        placeholder="Jelaskan isi dan tujuan quiz ini...">{{ old('deskripsi') }}</textarea>
+                        placeholder="Jelaskan isi dan tujuan quiz ini...">{{ old('deskripsi', $quiz->deskripsi) }}</textarea>
                     @error('deskripsi')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -78,25 +78,17 @@
                         <label for="materi_id" class="block text-sm font-medium text-gray-700 mb-2">
                             Materi <span class="text-red-500">*</span>
                         </label>
-                        @if (isset($materi))
-                            <input type="hidden" name="materi_id" value="{{ $materi->id }}">
-                            <div class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700">
-                                {{ $materi->judul }}
-                            </div>
-                            <p class="mt-1 text-sm text-gray-500">Materi sudah dipilih: {{ $materi->judul }}</p>
-                        @else
-                            <select name="materi_id" id="materi_id"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('materi_id') border-red-500 @enderror"
-                                required>
-                                <option value="">Pilih materi</option>
-                                @foreach ($materi as $m)
-                                    <option value="{{ $m->id }}"
-                                        {{ old('materi_id') == $m->id ? 'selected' : '' }}>
-                                        {{ $m->judul }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        @endif
+                        <select name="materi_id" id="materi_id"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('materi_id') border-red-500 @enderror"
+                            required>
+                            <option value="">Pilih materi</option>
+                            @foreach ($materi as $m)
+                                <option value="{{ $m->id }}"
+                                    {{ old('materi_id', $quiz->materi_id) == $m->id ? 'selected' : '' }}>
+                                    {{ $m->judul }}
+                                </option>
+                            @endforeach
+                        </select>
                         @error('materi_id')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -107,24 +99,17 @@
                         <label for="kelas_id" class="block text-sm font-medium text-gray-700 mb-2">
                             Kelas <span class="text-red-500">*</span>
                         </label>
-                        @if (isset($materi))
-                            <input type="hidden" name="kelas_id" value="{{ $materi->kelas_id }}">
-                            <div class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700">
-                                {{ $materi->kelas->nama }}
-                            </div>
-                            <p class="mt-1 text-sm text-gray-500">Kelas sudah dipilih: {{ $materi->kelas->nama }}</p>
-                        @else
-                            <select name="kelas_id" id="kelas_id"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('kelas_id') border-red-500 @enderror"
-                                required>
-                                <option value="">Pilih kelas</option>
-                                @foreach ($kelas as $k)
-                                    <option value="{{ $k->id }}" {{ old('kelas_id') == $k->id ? 'selected' : '' }}>
-                                        {{ $k->nama }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        @endif
+                        <select name="kelas_id" id="kelas_id"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('kelas_id') border-red-500 @enderror"
+                            required>
+                            <option value="">Pilih kelas</option>
+                            @foreach ($kelas as $k)
+                                <option value="{{ $k->id }}"
+                                    {{ old('kelas_id', $quiz->kelas_id) == $k->id ? 'selected' : '' }}>
+                                    {{ $k->nama }}
+                                </option>
+                            @endforeach
+                        </select>
                         @error('kelas_id')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -138,7 +123,8 @@
                         <label for="waktu_mulai" class="block text-sm font-medium text-gray-700 mb-2">
                             Waktu Mulai
                         </label>
-                        <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" value="{{ old('waktu_mulai') }}"
+                        <input type="datetime-local" name="waktu_mulai" id="waktu_mulai"
+                            value="{{ old('waktu_mulai', $quiz->waktu_mulai ? $quiz->waktu_mulai->format('Y-m-d\TH:i') : '') }}"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('waktu_mulai') border-red-500 @enderror">
                         @error('waktu_mulai')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -152,7 +138,7 @@
                             Waktu Selesai
                         </label>
                         <input type="datetime-local" name="waktu_selesai" id="waktu_selesai"
-                            value="{{ old('waktu_selesai') }}"
+                            value="{{ old('waktu_selesai', $quiz->waktu_selesai ? $quiz->waktu_selesai->format('Y-m-d\TH:i') : '') }}"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('waktu_selesai') border-red-500 @enderror">
                         @error('waktu_selesai')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -168,8 +154,8 @@
                         <label for="durasi" class="block text-sm font-medium text-gray-700 mb-2">
                             Durasi (menit) <span class="text-red-500">*</span>
                         </label>
-                        <input type="number" name="durasi" id="durasi" value="{{ old('durasi') }}" min="1"
-                            max="180"
+                        <input type="number" name="durasi" id="durasi" value="{{ old('durasi', $quiz->durasi) }}"
+                            min="1" max="180"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('durasi') border-red-500 @enderror"
                             placeholder="60" required>
                         @error('durasi')
@@ -183,8 +169,8 @@
                         <label for="jumlah_soal" class="block text-sm font-medium text-gray-700 mb-2">
                             Jumlah Soal <span class="text-red-500">*</span>
                         </label>
-                        <input type="number" name="jumlah_soal" id="jumlah_soal" value="{{ old('jumlah_soal') }}"
-                            min="1" max="100"
+                        <input type="number" name="jumlah_soal" id="jumlah_soal"
+                            value="{{ old('jumlah_soal', $quiz->jumlah_soal) }}" min="1" max="100"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('jumlah_soal') border-red-500 @enderror"
                             placeholder="20" required>
                         @error('jumlah_soal')
@@ -202,7 +188,7 @@
                             Nilai Minimum Lulus (%) <span class="text-red-500">*</span>
                         </label>
                         <input type="number" name="passing_score" id="passing_score"
-                            value="{{ old('passing_score', 70) }}" min="0" max="100"
+                            value="{{ old('passing_score', $quiz->passing_score) }}" min="0" max="100"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('passing_score') border-red-500 @enderror"
                             placeholder="70" required>
                         @error('passing_score')
@@ -219,9 +205,12 @@
                         <select name="status" id="status"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('status') border-red-500 @enderror"
                             required>
-                            <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
-                            <option value="aktif" {{ old('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                            <option value="selesai" {{ old('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                            <option value="draft" {{ old('status', $quiz->status) == 'draft' ? 'selected' : '' }}>Draft
+                            </option>
+                            <option value="aktif" {{ old('status', $quiz->status) == 'aktif' ? 'selected' : '' }}>Aktif
+                            </option>
+                            <option value="selesai" {{ old('status', $quiz->status) == 'selesai' ? 'selected' : '' }}>
+                                Selesai</option>
                         </select>
                         @error('status')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -237,10 +226,12 @@
                     </a>
                     <button type="submit"
                         class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                        Buat Quiz
+                        Update Quiz
                     </button>
                 </div>
             </form>
         </div>
     </div>
+
+
 @endsection

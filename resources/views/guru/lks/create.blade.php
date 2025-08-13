@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah LKS')
+@section('title', 'Tambah LKPD')
 @section('subtitle', 'Buat Lembar Kerja Siswa baru')
 
 @section('content')
@@ -14,14 +14,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                         </svg>
                     </a>
-                    <h2 class="text-2xl font-bold text-gray-900">Buat LKS untuk Materi: {{ $materi->judul }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-900">Buat LKPD untuk Materi: {{ $materi->judul }}</h2>
                 @else
                     <a href="{{ route('guru.lks.index') }}" class="text-blue-600 hover:text-blue-800 mr-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
                         </svg>
                     </a>
-                    <h2 class="text-2xl font-bold text-gray-900">Tambah LKS Baru</h2>
+                    <h2 class="text-2xl font-bold text-gray-900">Tambah LKPD Baru</h2>
                 @endif
             </div>
             <p class="text-gray-600 mt-1">
@@ -42,7 +43,7 @@
                     <!-- Judul Field -->
                     <div class="col-span-2">
                         <label for="judul" class="block text-sm font-medium text-gray-700 mb-2">
-                            Judul LKS <span class="text-red-500">*</span>
+                            Judul LKPD <span class="text-red-500">*</span>
                         </label>
                         <input type="text" name="judul" id="judul" value="{{ old('judul') }}"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('judul') border-red-500 @enderror"
@@ -61,7 +62,8 @@
                             <!-- Materi Pre-selected -->
                             <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 h-20 flex items-center">
                                 <div class="flex items-center w-full">
-                                    <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                                         </path>
@@ -69,7 +71,8 @@
                                     <div class="min-w-0 flex-1">
                                         <p class="text-sm font-medium text-blue-900 truncate">{{ $materi->judul }}</p>
                                         <p class="text-xs text-blue-600">
-                                            {{ $materi->mataPelajaran->nama ?? 'Mata Pelajaran' }} • {{ $materi->kelas->nama ?? 'Kelas' }}
+                                            {{ $materi->mataPelajaran->nama ?? 'Mata Pelajaran' }} •
+                                            {{ $materi->kelas->nama ?? 'Kelas' }}
                                         </p>
                                     </div>
                                 </div>
@@ -82,7 +85,8 @@
                                 required>
                                 <option value="">Pilih materi</option>
                                 @foreach ($materi as $m)
-                                    <option value="{{ $m->id }}" {{ old('materi_id') == $m->id ? 'selected' : '' }}>
+                                    <option value="{{ $m->id }}"
+                                        {{ old('materi_id') == $m->id ? 'selected' : '' }}>
                                         {{ $m->judul }}
                                     </option>
                                 @endforeach
@@ -100,7 +104,8 @@
                         </label>
                         <div class="bg-green-50 p-4 rounded-lg border border-green-200 h-20 flex items-center">
                             <div class="flex items-center w-full">
-                                <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
                                     </path>
@@ -142,7 +147,8 @@
                             required>
                             <option value="">Pilih status</option>
                             <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
-                            <option value="publikasi" {{ old('status') == 'publikasi' ? 'selected' : '' }}>Publikasi</option>
+                            <option value="publikasi" {{ old('status') == 'publikasi' ? 'selected' : '' }}>Publikasi
+                            </option>
                         </select>
                         @error('status')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -156,8 +162,8 @@
                         </label>
                         <textarea name="deskripsi" id="deskripsi" rows="3"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('deskripsi') border-red-500 @enderror"
-                            placeholder="Deskripsi singkat tentang LKS ini">{{ old('deskripsi') }}</textarea>
-                        <p class="mt-1 text-sm text-gray-500">Berikan deskripsi singkat tentang LKS ini untuk siswa</p>
+                            placeholder="Deskripsi singkat tentang LKPD ini">{{ old('deskripsi') }}</textarea>
+                        <p class="mt-1 text-sm text-gray-500">Berikan deskripsi singkat tentang LKPD ini untuk siswa</p>
                         @error('deskripsi')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -170,8 +176,9 @@
                         </label>
                         <textarea name="instruksi" id="instruksi" rows="4"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('instruksi') border-red-500 @enderror"
-                            placeholder="Tulis instruksi pengerjaan LKS untuk siswa..." required>{{ old('instruksi') }}</textarea>
-                        <p class="mt-1 text-sm text-gray-500">Instruksi yang jelas akan membantu siswa mengerjakan LKS dengan baik</p>
+                            placeholder="Tulis instruksi pengerjaan LKPD untuk siswa..." required>{{ old('instruksi') }}</textarea>
+                        <p class="mt-1 text-sm text-gray-500">Instruksi yang jelas akan membantu siswa mengerjakan LKPD
+                            dengan baik</p>
                         @error('instruksi')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -181,7 +188,7 @@
                     <div class="col-span-2">
                         <div class="border-t border-gray-200 pt-6 mt-6">
                             <label for="file_path" class="block text-sm font-medium text-gray-700 mb-2">
-                                File LKS <span class="text-red-500">*</span>
+                                File LKPD <span class="text-red-500">*</span>
                             </label>
                             <input type="file" name="file_path" id="file_path" accept=".pdf,.doc,.docx,.ppt,.pptx"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('file_path') border-red-500 @enderror"
@@ -209,7 +216,7 @@
                     @endif
                     <button type="submit"
                         class="px-4 py-2 bg-green-600 border border-transparent rounded-md text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                        Buat LKS
+                        Buat LKPD
                     </button>
                 </div>
             </form>

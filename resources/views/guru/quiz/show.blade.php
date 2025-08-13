@@ -3,6 +3,38 @@
 @section('title', 'Detail Quiz')
 @section('subtitle', 'Informasi lengkap quiz dan hasil siswa')
 
+@push('styles')
+<style>
+    .math-fraction {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        margin: 0 0.2em;
+    }
+    
+    .math-fraction::before {
+        content: '';
+        display: block;
+        border-bottom: 1px solid currentColor;
+        margin-bottom: 0.1em;
+    }
+    
+    .math-sqrt {
+        border-top: 1px solid currentColor;
+        padding-top: 0.1em;
+    }
+    
+    .math-sum, .math-integral {
+        font-weight: bold;
+    }
+    
+    sup, sub {
+        font-size: 0.75em;
+        line-height: 1;
+    }
+</style>
+@endpush
+
 @section('content')
     <div class="p-6">
         <!-- Header Section -->
@@ -11,7 +43,8 @@
                 <div class="flex items-center">
                     <a href="{{ route('guru.quiz.index') }}" class="text-blue-600 hover:text-blue-800 mr-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
                         </svg>
                     </a>
                     <h2 class="text-2xl font-bold text-gray-900">{{ $quiz->judul }}</h2>
@@ -94,13 +127,15 @@
                                     @if ($quiz->waktu_mulai)
                                         <div>
                                             <h5 class="text-xs font-medium text-gray-500">Waktu Mulai</h5>
-                                            <p class="text-gray-900">{{ \Carbon\Carbon::parse($quiz->waktu_mulai)->format('d M Y H:i') }}</p>
+                                            <p class="text-gray-900">
+                                                {{ \Carbon\Carbon::parse($quiz->waktu_mulai)->format('d M Y H:i') }}</p>
                                         </div>
                                     @endif
                                     @if ($quiz->waktu_selesai)
                                         <div>
                                             <h5 class="text-xs font-medium text-gray-500">Waktu Selesai</h5>
-                                            <p class="text-gray-900">{{ \Carbon\Carbon::parse($quiz->waktu_selesai)->format('d M Y H:i') }}</p>
+                                            <p class="text-gray-900">
+                                                {{ \Carbon\Carbon::parse($quiz->waktu_selesai)->format('d M Y H:i') }}</p>
                                         </div>
                                     @endif
                                 </div>
@@ -153,7 +188,8 @@
             <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-semibold text-gray-900">Daftar Soal ({{ $soal->count() }})</h3>
-                    <a href="#" class="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                    <a href="{{ route('guru.quiz.soal', $quiz) }}"
+                        class="text-purple-600 hover:text-purple-700 text-sm font-medium">
                         Kelola Soal
                     </a>
                 </div>
@@ -166,23 +202,46 @@
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
                                         <div class="flex items-center mb-2">
-                                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">
+                                            <span
+                                                class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-3">
                                                 Soal {{ $index + 1 }}
                                             </span>
                                             <span class="text-sm text-gray-500">Urutan: {{ $s->urutan }}</span>
                                         </div>
-                                        <h4 class="text-lg font-medium text-gray-900 mb-2">{{ $s->pertanyaan }}</h4>
+                                        <h4 class="text-lg font-medium text-gray-900 mb-2">
+                                            @if($s->pertanyaan_html)
+                                                {!! $s->pertanyaan_html !!}
+                                            @else
+                                                {{ $s->pertanyaan }}
+                                            @endif
+                                        </h4>
+                                        
+                                        @if($s->gambar_soal)
+                                            <div class="mb-3">
+                                                <img src="{{ asset('storage/' . $s->gambar_soal) }}" 
+                                                     alt="Gambar soal" 
+                                                     class="max-w-md rounded border">
+                                            </div>
+                                        @endif
                                         <div class="space-y-2">
                                             @foreach (['a', 'b', 'c', 'd'] as $option)
-                                                <div class="flex items-center">
-                                                    <span class="w-4 h-4 mr-2 text-sm text-gray-600">{{ strtoupper($option) }}.</span>
-                                                    <span
-                                                        class="text-gray-700 {{ $s->jawaban_benar === $option ? 'font-semibold text-green-600' : '' }}">
-                                                        {{ $s->{'pilihan_' . $option} }}
-                                                        @if ($s->jawaban_benar === $option)
-                                                            <span class="ml-2 text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Jawaban Benar</span>
+                                                <div class="flex items-start">
+                                                    <span class="w-4 h-4 mr-2 text-sm text-gray-600 mt-1">{{ strtoupper($option) }}.</span>
+                                                    <div class="flex-1">
+                                                        <span class="text-gray-700 {{ $s->jawaban_benar === $option ? 'font-semibold text-green-600' : '' }}">
+                                                            {{ $s->{'opsi_' . $option} }}
+                                                            @if ($s->jawaban_benar === $option)
+                                                                <span class="ml-2 text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Jawaban Benar</span>
+                                                            @endif
+                                                        </span>
+                                                        @if($s->{'gambar_opsi_' . $option})
+                                                            <div class="mt-2">
+                                                                <img src="{{ asset('storage/' . $s->{'gambar_opsi_' . $option}) }}" 
+                                                                     alt="Gambar opsi {{ strtoupper($option) }}" 
+                                                                     class="max-w-32 rounded border">
+                                                            </div>
                                                         @endif
-                                                    </span>
+                                                    </div>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -193,7 +252,8 @@
                     </div>
                 @else
                     <div class="text-center py-8">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                             </path>
@@ -201,7 +261,7 @@
                         <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada soal</h3>
                         <p class="mt-1 text-sm text-gray-500">Tambahkan soal untuk quiz ini.</p>
                         <div class="mt-6">
-                            <a href="#"
+                            <a href="{{ route('guru.quiz.soal', $quiz) }}"
                                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700">
                                 Tambah Soal Pertama
                             </a>
@@ -222,22 +282,28 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Siswa
                                     </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nilai
                                     </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Status
                                     </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Waktu Mulai
                                     </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Waktu Selesai
                                     </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Durasi
                                     </th>
                                 </tr>
@@ -248,14 +314,16 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
-                                                    <div class="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
+                                                    <div
+                                                        class="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
                                                         <span class="text-sm font-medium text-purple-600">
                                                             {{ strtoupper(substr($h->siswa->name, 0, 1)) }}
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">{{ $h->siswa->name }}</div>
+                                                    <div class="text-sm font-medium text-gray-900">{{ $h->siswa->name }}
+                                                    </div>
                                                     <div class="text-sm text-gray-500">{{ $h->siswa->email }}</div>
                                                 </div>
                                             </div>
@@ -298,7 +366,8 @@
                     </div>
                 @else
                     <div class="text-center py-8">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                             </path>

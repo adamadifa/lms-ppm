@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit LKS')
+@section('title', 'Edit LKPD')
 @section('subtitle', 'Edit Lembar Kerja Siswa')
 
 @section('content')
@@ -13,7 +13,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </a>
-                <h2 class="text-2xl font-bold text-gray-900">Edit LKS</h2>
+                <h2 class="text-2xl font-bold text-gray-900">Edit LKPD</h2>
             </div>
             <p class="text-gray-600 mt-1">Edit Lembar Kerja Siswa {{ $lks->judul }}</p>
         </div>
@@ -28,7 +28,7 @@
                     <!-- Judul Field -->
                     <div class="col-span-2">
                         <label for="judul" class="block text-sm font-medium text-gray-700 mb-2">
-                            Judul LKS <span class="text-red-500">*</span>
+                            Judul LKPD <span class="text-red-500">*</span>
                         </label>
                         <input type="text" name="judul" id="judul" value="{{ old('judul', $lks->judul) }}"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('judul') border-red-500 @enderror"
@@ -48,7 +48,8 @@
                             required>
                             <option value="">Pilih materi</option>
                             @foreach ($materi as $m)
-                                <option value="{{ $m->id }}" {{ old('materi_id', $lks->materi_id) == $m->id ? 'selected' : '' }}>
+                                <option value="{{ $m->id }}"
+                                    {{ old('materi_id', $lks->materi_id) == $m->id ? 'selected' : '' }}>
                                     {{ $m->judul }}
                                 </option>
                             @endforeach
@@ -62,7 +63,8 @@
                     <div class="col-span-2 md:col-span-1">
                         <div class="bg-blue-50 p-4 rounded-lg">
                             <div class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
                                     </path>
@@ -98,8 +100,10 @@
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('status') border-red-500 @enderror"
                             required>
                             <option value="">Pilih status</option>
-                            <option value="draft" {{ old('status', $lks->status) == 'draft' ? 'selected' : '' }}>Draft</option>
-                            <option value="publikasi" {{ old('status', $lks->status) == 'publikasi' ? 'selected' : '' }}>Publikasi</option>
+                            <option value="draft" {{ old('status', $lks->status) == 'draft' ? 'selected' : '' }}>Draft
+                            </option>
+                            <option value="publikasi" {{ old('status', $lks->status) == 'publikasi' ? 'selected' : '' }}>
+                                Publikasi</option>
                         </select>
                         @error('status')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -113,7 +117,7 @@
                         </label>
                         <textarea name="deskripsi" id="deskripsi" rows="3"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('deskripsi') border-red-500 @enderror"
-                            placeholder="Deskripsi singkat tentang LKS ini">{{ old('deskripsi', $lks->deskripsi) }}</textarea>
+                            placeholder="Deskripsi singkat tentang LKPD ini">{{ old('deskripsi', $lks->deskripsi) }}</textarea>
                         @error('deskripsi')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -126,7 +130,7 @@
                         </label>
                         <textarea name="instruksi" id="instruksi" rows="4"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('instruksi') border-red-500 @enderror"
-                            placeholder="Tulis instruksi pengerjaan LKS untuk siswa..." required>{{ old('instruksi', $lks->instruksi) }}</textarea>
+                            placeholder="Tulis instruksi pengerjaan LKPD untuk siswa..." required>{{ old('instruksi', $lks->instruksi) }}</textarea>
                         @error('instruksi')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -135,7 +139,7 @@
                     <!-- File Upload Field -->
                     <div class="col-span-2">
                         <label for="file_path" class="block text-sm font-medium text-gray-700 mb-2">
-                            File LKS
+                            File LKPD
                         </label>
                         <input type="file" name="file_path" id="file_path" accept=".pdf,.doc,.docx,.ppt,.pptx"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('file_path') border-red-500 @enderror">
@@ -157,7 +161,7 @@
                     </a>
                     <button type="submit"
                         class="px-4 py-2 bg-green-600 border border-transparent rounded-md text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                        Update LKS
+                        Update LKPD
                     </button>
                 </div>
             </form>

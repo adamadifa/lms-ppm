@@ -25,6 +25,13 @@ class Quiz extends Model
         'status'
     ];
 
+    protected $casts = [
+        'waktu_mulai' => 'datetime',
+        'waktu_selesai' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
     public function materi()
     {
         return $this->belongsTo(Materi::class);

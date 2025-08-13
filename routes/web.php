@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -56,9 +56,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('materi', GuruMateriController::class);
         Route::resource('lks', LKSController::class)->parameters(['lks' => 'lks']);
         Route::get('materi/{materi}/create-lks', [LKSController::class, 'createFromMateri'])->name('materi.create-lks');
+        Route::get('materi/{materi}/create-quiz', [QuizController::class, 'createFromMateri'])->name('materi.create-quiz');
         Route::resource('materi-video', MateriVideoController::class);
         Route::get('materi/{materi}/videos', [MateriVideoController::class, 'showByMateri'])->name('materi.videos');
         Route::resource('quiz', QuizController::class);
+        Route::get('quiz/{quiz}/soal', [QuizController::class, 'soal'])->name('quiz.soal');
+        Route::post('quiz/{quiz}/soal', [QuizController::class, 'storeSoal'])->name('quiz.store-soal');
+        Route::delete('quiz/{quiz}/soal/{soal}', [QuizController::class, 'destroySoal'])->name('quiz.destroy-soal');
         Route::resource('penilaian', PenilaianController::class);
     });
 
@@ -66,9 +70,15 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:siswa')->prefix('siswa')->name('siswa.')->group(function () {
         Route::resource('materi', SiswaMateriController::class)->only(['index', 'show']);
         Route::get('materi/filter', [SiswaMateriController::class, 'filter'])->name('materi.filter');
-        Route::resource('lks', SiswaLKSController::class)->only(['index', 'show']);
+        Route::get('lks', [SiswaLKSController::class, 'index'])->name('lks.index');
+        Route::get('lks/{id}', [SiswaLKSController::class, 'show'])->name('lks.show');
+        Route::post('lks/{id}/submit', [SiswaLKSController::class, 'submit'])->name('lks.submit');
         Route::resource('quiz', SiswaQuizController::class)->only(['index', 'show']);
+        Route::get('quiz/{quiz}/kerjakan', [SiswaQuizController::class, 'kerjakan'])->name('quiz.kerjakan');
+        Route::post('quiz/{quiz}/submit', [SiswaQuizController::class, 'submit'])->name('quiz.submit');
         Route::resource('nilai', NilaiController::class)->only(['index', 'show']);
+        Route::get('nilai/quiz/{id}', [NilaiController::class, 'showQuiz'])->name('nilai.show-quiz');
+        Route::get('nilai/lks/{id}', [NilaiController::class, 'showLKS'])->name('nilai.show-lks');
     });
 });
 

@@ -7,18 +7,9 @@
     <div class="p-6">
         <!-- Header Section -->
         <div class="mb-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-900">Quiz Pembelajaran</h2>
-                    <p class="text-gray-600 mt-1">Kelola semua quiz yang Anda buat untuk siswa</p>
-                </div>
-                <a href="{{ route('guru.quiz.create') }}"
-                    class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Buat Quiz
-                </a>
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Quiz Pembelajaran</h2>
+                <p class="text-gray-600 mt-1">Kelola semua quiz yang Anda buat untuk siswa</p>
             </div>
         </div>
 
@@ -90,9 +81,12 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('guru.quiz.show', $q) }}" class="text-blue-600 hover:text-blue-900">Detail</a>
-                                            <a href="{{ route('guru.quiz.edit', $q) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            <form action="{{ route('guru.quiz.destroy', $q) }}" method="POST" class="inline">
+                                            <a href="{{ route('guru.quiz.show', $q) }}"
+                                                class="text-blue-600 hover:text-blue-900">Detail</a>
+                                            <a href="{{ route('guru.quiz.edit', $q) }}"
+                                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('guru.quiz.destroy', $q) }}" method="POST"
+                                                class="inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900"
@@ -127,13 +121,7 @@
                     <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada quiz</h3>
                     <p class="mt-1 text-sm text-gray-500">Anda belum membuat quiz untuk siswa.</p>
                     <div class="mt-6">
-                        <a href="{{ route('guru.quiz.create') }}"
-                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700">
-                            <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            Buat Quiz Pertama
-                        </a>
+                        <p class="text-sm text-gray-500">Silakan buat quiz melalui halaman materi pembelajaran.</p>
                     </div>
                 </div>
             </div>
@@ -149,10 +137,6 @@
             </a>
 
             <div class="flex space-x-3">
-                <a href="{{ route('guru.quiz.create') }}"
-                    class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Buat Quiz Baru
-                </a>
                 <a href="{{ route('guru.materi.index') }}"
                     class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                     Lihat Materi

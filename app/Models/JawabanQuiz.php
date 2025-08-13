@@ -15,6 +15,8 @@ class JawabanQuiz extends Model
         'hasil_quiz_id',
         'soal_id',
         'jawaban_siswa',
+        'kunci_jawaban',
+        'benar',
         'nilai_per_soal'
     ];
 

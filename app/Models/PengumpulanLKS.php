@@ -14,12 +14,18 @@ class PengumpulanLKS extends Model
     protected $fillable = [
         'lks_id',
         'siswa_id',
-        'file_path',
-        'komentar',
+        'jawaban',
+        'file_jawaban',
+        'waktu_pengumpulan',
         'status',
         'nilai',
-        'feedback',
-        'submitted_at'
+        'feedback'
+    ];
+
+    protected $casts = [
+        'waktu_pengumpulan' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
 
     public function lks()
@@ -27,8 +33,19 @@ class PengumpulanLKS extends Model
         return $this->belongsTo(LembarKerjaSiswa::class, 'lks_id');
     }
 
+    // Alias for backward compatibility
+    public function lembarKerjaSiswa()
+    {
+        return $this->belongsTo(LembarKerjaSiswa::class, 'lks_id');
+    }
+
     public function siswa()
     {
         return $this->belongsTo(User::class, 'siswa_id');
+    }
+
+    public function nilai()
+    {
+        return $this->hasOne(LogNilai::class, 'pengumpulan_lks_id');
     }
 }
