@@ -171,7 +171,8 @@
                                     </svg>
                                     <div>
                                         <p class="text-sm font-medium text-green-900">Link tersedia</p>
-                                        <p class="text-xs text-green-600 truncate max-w-xs">{{ $materi->external_link }}</p>
+                                        <p class="text-xs text-green-600 truncate max-w-xs">{{ $materi->external_link }}
+                                        </p>
                                     </div>
                                 </div>
                                 <a href="{{ $materi->external_link }}" target="_blank"
@@ -391,6 +392,144 @@
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
                                 Tambah Video Pertama
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
+            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Quiz Pembelajaran</h3>
+                            <p class="text-sm text-gray-600">Quiz untuk menguji pemahaman siswa terhadap materi ini</p>
+                        </div>
+                    </div>
+                    <a href="{{ route('guru.materi.create-quiz', $materi) }}"
+                        class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Tambah Quiz
+                    </a>
+                </div>
+            </div>
+
+            @if (isset($quizzes) && $quizzes->count() > 0)
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Judul Quiz
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Durasi
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Jumlah Soal
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Passing Score
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Dibuat
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Aksi
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach ($quizzes as $quiz)
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">{{ $quiz->judul }}</div>
+                                        @if ($quiz->deskripsi)
+                                            <div class="text-sm text-gray-500">{{ Str::limit($quiz->deskripsi, 50) }}
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                            @if ($quiz->status === 'publikasi') bg-green-100 text-green-800
+                                            @else bg-yellow-100 text-yellow-800 @endif">
+                                            {{ ucfirst($quiz->status) }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ $quiz->durasi }} menit</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ $quiz->jumlah_soal }} soal</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ $quiz->passing_score }}%</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ $quiz->created_at->format('d M Y') }}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <div class="flex space-x-2">
+                                            <a href="{{ route('guru.quiz.show', $quiz) }}"
+                                                class="text-blue-600 hover:text-blue-900">Detail</a>
+                                            <a href="{{ route('guru.quiz.edit', $quiz) }}"
+                                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <a href="{{ route('guru.quiz.soal', $quiz) }}"
+                                                class="text-green-600 hover:text-green-900">Soal</a>
+                                            <form action="{{ route('guru.quiz.destroy', $quiz) }}" method="POST"
+                                                class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-900"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus Quiz ini?')">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <!-- No Quiz Message -->
+                <div class="p-6">
+                    <div class="text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada Quiz</h3>
+                        <p class="mt-1 text-sm text-gray-500">Anda belum membuat Quiz untuk materi ini.</p>
+                        <div class="mt-6">
+                            <a href="{{ route('guru.materi.create-quiz', $materi) }}"
+                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700">
+                                <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                Buat Quiz Pertama
                             </a>
                         </div>
                     </div>
