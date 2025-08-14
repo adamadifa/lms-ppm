@@ -103,7 +103,10 @@ class MateriController extends Controller
         // Get videos related to this materi
         $videos = $materi->videoAktif()->get();
 
-        return view('guru.materi.show', compact('materi', 'lks', 'videos'));
+        // Get quizzes related to this materi
+        $quizzes = $materi->quiz()->orderBy('created_at', 'desc')->get();
+
+        return view('guru.materi.show', compact('materi', 'lks', 'videos', 'quizzes'));
     }
 
     /**
