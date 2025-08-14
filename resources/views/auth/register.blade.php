@@ -18,7 +18,8 @@
 <body class="font-sans antialiased bg-gradient-to-br from-blue-800 to-blue-900 min-h-screen">
     <div class="min-h-screen flex items-center justify-center p-3 sm:p-4 lg:p-6 xl:p-8">
         <!-- Main Container with Background -->
-        <div class="w-full max-w-6xl bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-lg sm:shadow-xl lg:shadow-2xl overflow-hidden">
+        <div
+            class="w-full max-w-6xl bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-lg sm:shadow-xl lg:shadow-2xl overflow-hidden">
             <div class="flex flex-col lg:flex-row">
                 <!-- Left Panel - DeepMath Branding -->
                 <div
@@ -141,8 +142,10 @@
                     <div class="w-full max-w-sm">
                         <!-- Logo -->
                         <div class="text-center mb-3 sm:mb-4 lg:mb-6 xl:mb-8">
-                            <div class="flex items-center justify-center gap-2 text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 lg:mb-3 xl:mb-4">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                            <div
+                                class="flex items-center justify-center gap-2 text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 lg:mb-3 xl:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-blue-600" fill="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path
                                         d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                                 </svg>
@@ -152,21 +155,23 @@
 
                         <!-- Title -->
                         <div class="text-center mb-3 sm:mb-4 lg:mb-6 xl:mb-8">
-                            <h1 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Create an account</h1>
+                            <h1 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Create an account
+                            </h1>
                             <p class="text-gray-600 text-xs sm:text-sm px-2">
                                 Sign up to start your learning journey and access our comprehensive dashboard.
                             </p>
                         </div>
 
                         <!-- Register Form -->
-                        <form method="POST" action="{{ route('register') }}" class="space-y-2 sm:space-y-3 lg:space-y-4">
+                        <form method="POST" action="{{ route('register') }}"
+                            class="space-y-2 sm:space-y-3 lg:space-y-4">
                             @csrf
 
                             <!-- Full Name -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
                                         </path>
@@ -206,8 +211,8 @@
                             <!-- Password -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
                                         </path>
@@ -224,8 +229,8 @@
                                 <button type="button"
                                     class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                                     onclick="togglePassword('password')">
-                                    <svg id="eye-icon-password" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
+                                    <svg id="eye-icon-password" class="w-4 h-4 sm:w-5 sm:h-5" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21">
                                         </path>
@@ -239,8 +244,8 @@
                             <!-- Confirm Password -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
                                         </path>
@@ -257,8 +262,8 @@
                                 <button type="button"
                                     class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                                     onclick="togglePassword('password_confirmation')">
-                                    <svg id="eye-icon-confirm" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
+                                    <svg id="eye-icon-confirm" class="w-4 h-4 sm:w-5 sm:h-5" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
                                         </path>
@@ -275,8 +280,8 @@
                             <!-- Role Selection -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
                                         </path>
@@ -470,16 +475,18 @@
                 </div>
 
                 <!-- Mobile Branding Header (Visible only on mobile) -->
-                <div class="lg:hidden w-full bg-gradient-to-br from-blue-700 to-blue-800 py-3 sm:py-4 lg:py-6 px-2 sm:px-3 lg:px-4 text-center text-white">
+                <div
+                    class="lg:hidden w-full bg-gradient-to-br from-blue-700 to-blue-800 py-3 sm:py-4 lg:py-6 px-2 sm:px-3 lg:px-4 text-center text-white">
                     <div class="flex flex-col items-center">
                         <!-- Mobile Logo -->
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1.5 sm:mb-2 lg:mb-3 backdrop-blur-sm">
+                        <div
+                            class="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1.5 sm:mb-2 lg:mb-3 backdrop-blur-sm">
                             <span class="text-lg sm:text-xl lg:text-2xl font-bold text-white">D</span>
                         </div>
-                        
+
                         <!-- Mobile App Name -->
                         <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 sm:mb-2 tracking-wider">DeepMath</h1>
-                        
+
                         <!-- Mobile Tagline -->
                         <p class="text-xs sm:text-sm text-blue-100">Deep Learning Matematika</p>
                     </div>

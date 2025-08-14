@@ -16,6 +16,7 @@ class Materi extends Model
         'deskripsi',
         'konten',
         'file_path',
+        'external_link',
         'mata_pelajaran_id',
         'kelas_id',
         'guru_id',

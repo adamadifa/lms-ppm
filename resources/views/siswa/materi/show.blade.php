@@ -53,6 +53,17 @@
                                 Download File
                             </a>
                         @endif
+                        @if ($materi->external_link)
+                            <a href="{{ $materi->external_link }}" target="_blank"
+                                class="bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors flex items-center justify-center w-full sm:w-auto">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                    </path>
+                                </svg>
+                                Buka Flipbook
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -150,6 +161,36 @@
                                 <a href="{{ asset('storage/' . $materi->file_path) }}" target="_blank"
                                     class="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors text-center">
                                     Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                <!-- External Link Information -->
+                @if ($materi->external_link)
+                    <div class="mb-4 sm:mb-6">
+                        <h4 class="text-base sm:text-lg font-medium text-gray-900 mb-2 sm:mb-3">Link External (Flipbook)
+                        </h4>
+                        <div class="bg-orange-50 p-3 sm:p-4 rounded-lg border border-orange-200">
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-orange-600 mr-2 sm:mr-3 flex-shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                        </path>
+                                    </svg>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-xs sm:text-sm font-medium text-orange-900">Link tersedia</p>
+                                        <p class="text-xs text-orange-600 truncate max-w-xs">{{ $materi->external_link }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <a href="{{ $materi->external_link }}" target="_blank"
+                                    class="bg-orange-600 hover:bg-orange-700 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors text-center">
+                                    Buka Link
                                 </a>
                             </div>
                         </div>

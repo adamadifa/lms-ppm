@@ -150,6 +150,20 @@
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <!-- External Link Field -->
+                    <div class="col-span-2">
+                        <label for="external_link" class="block text-sm font-medium text-gray-700 mb-2">
+                            Link External (Flipbook)
+                        </label>
+                        <input type="url" name="external_link" id="external_link" value="{{ old('external_link', $materi->external_link) }}"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('external_link') border-red-500 @enderror"
+                            placeholder="https://example.com/flipbook">
+                        <p class="mt-1 text-sm text-gray-500">Masukkan link flipbook atau materi external lainnya</p>
+                        @error('external_link')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- Form Actions -->

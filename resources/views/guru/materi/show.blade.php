@@ -155,6 +155,33 @@
                         </div>
                     </div>
                 @endif
+
+                <!-- External Link Information -->
+                @if ($materi->external_link)
+                    <div class="mb-6">
+                        <h4 class="text-lg font-medium text-gray-900 mb-3">Link External (Flipbook)</h4>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <svg class="w-8 h-8 text-green-600 mr-3" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-medium text-green-900">Link tersedia</p>
+                                        <p class="text-xs text-green-600 truncate max-w-xs">{{ $materi->external_link }}</p>
+                                    </div>
+                                </div>
+                                <a href="{{ $materi->external_link }}" target="_blank"
+                                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                                    Buka Link
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
 
