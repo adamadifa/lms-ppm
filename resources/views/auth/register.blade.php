@@ -16,10 +16,10 @@
 </head>
 
 <body class="font-sans antialiased bg-gradient-to-br from-blue-800 to-blue-900 min-h-screen">
-    <div class="min-h-screen flex items-center justify-center p-8">
+    <div class="min-h-screen flex items-center justify-center p-3 sm:p-4 lg:p-6 xl:p-8">
         <!-- Main Container with Background -->
-        <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl overflow-hidden">
-            <div class="flex">
+        <div class="w-full max-w-6xl bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-lg sm:shadow-xl lg:shadow-2xl overflow-hidden">
+            <div class="flex flex-col lg:flex-row">
                 <!-- Left Panel - DeepMath Branding -->
                 <div
                     class="hidden lg:flex lg:w-3/5 bg-gradient-to-br from-blue-700 to-blue-800 relative overflow-hidden">
@@ -137,12 +137,12 @@
                 </div>
 
                 <!-- Right Panel - Form Register -->
-                <div class="w-full lg:w-2/5 p-12 flex items-center justify-center">
+                <div class="w-full lg:w-2/5 p-3 sm:p-4 lg:p-6 xl:p-12 flex items-center justify-center">
                     <div class="w-full max-w-sm">
                         <!-- Logo -->
-                        <div class="text-center mb-8">
-                            <div class="flex items-center justify-center gap-2 text-2xl font-bold text-gray-900 mb-4">
-                                <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                        <div class="text-center mb-3 sm:mb-4 lg:mb-6 xl:mb-8">
+                            <div class="flex items-center justify-center gap-2 text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 sm:mb-2 lg:mb-3 xl:mb-4">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                                     <path
                                         d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                                 </svg>
@@ -151,21 +151,21 @@
                         </div>
 
                         <!-- Title -->
-                        <div class="text-center mb-8">
-                            <h1 class="text-2xl font-bold text-gray-900 mb-2">Create an account</h1>
-                            <p class="text-gray-600 text-sm">
+                        <div class="text-center mb-3 sm:mb-4 lg:mb-6 xl:mb-8">
+                            <h1 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Create an account</h1>
+                            <p class="text-gray-600 text-xs sm:text-sm px-2">
                                 Sign up to start your learning journey and access our comprehensive dashboard.
                             </p>
                         </div>
 
                         <!-- Register Form -->
-                        <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                        <form method="POST" action="{{ route('register') }}" class="space-y-2 sm:space-y-3 lg:space-y-4">
                             @csrf
 
                             <!-- Full Name -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
@@ -174,39 +174,39 @@
                                 </div>
                                 <input id="name" type="text" name="name" value="{{ old('name') }}"
                                     required autofocus autocomplete="name"
-                                    class="w-full pl-10 pr-4 pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('name') border-red-500 @enderror peer"
+                                    class="w-full pl-10 pr-4 pt-5 sm:pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('name') border-red-500 @enderror peer text-sm sm:text-base h-12 sm:h-14"
                                     placeholder=" ">
                                 <label for="name"
-                                    class="absolute left-10 top-2 text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
+                                    class="absolute left-10 top-1.5 sm:top-2 text-xs sm:text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 sm:peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
                                     Full Name
                                 </label>
                                 @error('name')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-1 text-xs sm:text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <!-- Email -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span class="text-gray-400 text-lg">@</span>
+                                    <span class="text-gray-400 text-base sm:text-lg">@</span>
                                 </div>
                                 <input id="email" type="email" name="email" value="{{ old('email') }}"
                                     required autocomplete="username"
-                                    class="w-full pl-10 pr-4 pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('email') border-red-500 @enderror peer"
+                                    class="w-full pl-10 pr-4 pt-5 sm:pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('email') border-red-500 @enderror peer text-sm sm:text-base h-12 sm:h-14"
                                     placeholder=" ">
                                 <label for="email"
-                                    class="absolute left-10 top-2 text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
+                                    class="absolute left-10 top-1.5 sm:top-2 text-xs sm:text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 sm:peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
                                     Email
                                 </label>
                                 @error('email')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-1 text-xs sm:text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <!-- Password -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
@@ -215,16 +215,16 @@
                                 </div>
                                 <input id="password" type="password" name="password" required
                                     autocomplete="new-password"
-                                    class="w-full pl-10 pr-12 pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('password') border-red-500 @enderror peer"
+                                    class="w-full pl-10 pr-12 pt-5 sm:pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('password') border-red-500 @enderror peer text-sm sm:text-base h-12 sm:h-14"
                                     placeholder=" ">
                                 <label for="password"
-                                    class="absolute left-10 top-2 text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
+                                    class="absolute left-10 top-1.5 sm:top-2 text-xs sm:text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 sm:peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
                                     Password
                                 </label>
                                 <button type="button"
                                     class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                                     onclick="togglePassword('password')">
-                                    <svg id="eye-icon-password" class="w-5 h-5" fill="none" stroke="currentColor"
+                                    <svg id="eye-icon-password" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21">
@@ -232,14 +232,14 @@
                                     </svg>
                                 </button>
                                 @error('password')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-1 text-xs sm:text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <!-- Confirm Password -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
@@ -248,16 +248,16 @@
                                 </div>
                                 <input id="password_confirmation" type="password" name="password_confirmation"
                                     required autocomplete="new-password"
-                                    class="w-full pl-10 pr-12 pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('password_confirmation') border-red-500 @enderror peer"
+                                    class="w-full pl-10 pr-12 pt-5 sm:pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('password_confirmation') border-red-500 @enderror peer text-sm sm:text-base h-12 sm:h-14"
                                     placeholder=" ">
                                 <label for="password_confirmation"
-                                    class="absolute left-10 top-2 text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
+                                    class="absolute left-10 top-1.5 sm:top-2 text-xs sm:text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 sm:peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
                                     Confirm Password
                                 </label>
                                 <button type="button"
                                     class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                                     onclick="togglePassword('password_confirmation')">
-                                    <svg id="eye-icon-confirm" class="w-5 h-5" fill="none" stroke="currentColor"
+                                    <svg id="eye-icon-confirm" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
@@ -268,14 +268,14 @@
                                     </svg>
                                 </button>
                                 @error('password_confirmation')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-1 text-xs sm:text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <!-- Role Selection -->
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
@@ -283,17 +283,17 @@
                                     </svg>
                                 </div>
                                 <select id="role" name="role" required
-                                    class="w-full pl-10 pr-4 pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('role') border-red-500 @enderror peer">
+                                    class="w-full pl-10 pr-4 pt-5 sm:pt-6 pb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 @error('role') border-red-500 @enderror peer text-sm sm:text-base h-12 sm:h-14">
                                     <option value="">Pilih Role</option>
                                     <option value="siswa">Siswa</option>
                                     <option value="guru">Guru</option>
                                 </select>
                                 <label for="role"
-                                    class="absolute left-10 top-2 text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
+                                    class="absolute left-10 top-1.5 sm:top-2 text-xs sm:text-sm text-gray-500 transition-all duration-200 peer-focus:text-blue-500 peer-focus:text-xs peer-focus:-translate-y-1 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 sm:peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400">
                                     Role
                                 </label>
                                 @error('role')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-1 text-xs sm:text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
@@ -411,7 +411,7 @@
                             <div class="flex items-start">
                                 <input type="checkbox" name="terms" required
                                     class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-                                <span class="ml-2 text-sm text-gray-600">
+                                <span class="ml-2 text-xs sm:text-sm text-gray-600">
                                     I agree to the
                                     <a href="#" class="text-blue-600 hover:text-blue-700">Terms & Conditions</a>
                                 </span>
@@ -419,23 +419,23 @@
 
                             <!-- Register Button -->
                             <button type="submit"
-                                class="w-full bg-blue-700 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 shadow-lg">
+                                class="w-full bg-blue-700 text-white py-2.5 sm:py-3 px-4 rounded-lg font-medium hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 shadow-lg text-sm sm:text-base h-11 sm:h-12">
                                 Create account
                             </button>
                         </form>
 
                         <!-- Separator -->
-                        <div class="my-6 flex items-center">
+                        <div class="my-3 sm:my-4 lg:my-6 flex items-center">
                             <div class="flex-1 border-t border-gray-300"></div>
-                            <span class="px-4 text-sm text-gray-500">OR</span>
+                            <span class="px-2 sm:px-3 lg:px-4 text-xs sm:text-sm text-gray-500">OR</span>
                             <div class="flex-1 border-t border-gray-300"></div>
                         </div>
 
                         <!-- Social Login Buttons -->
-                        <div class="space-y-3">
+                        <div class="space-y-2 sm:space-y-3">
                             <button
-                                class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 bg-white">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                class="w-full flex items-center justify-center gap-2 sm:gap-3 px-2.5 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 bg-white text-xs sm:text-sm h-10 sm:h-11 lg:h-12">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24">
                                     <path fill="#4285F4"
                                         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                                     <path fill="#34A853"
@@ -449,8 +449,8 @@
                             </button>
 
                             <button
-                                class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 bg-white">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                class="w-full flex items-center justify-center gap-2 sm:gap-3 px-2.5 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 bg-white text-xs sm:text-sm h-10 sm:h-11 lg:h-12">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
                                     <path
                                         d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                                 </svg>
@@ -459,13 +459,29 @@
                         </div>
 
                         <!-- Sign In Link -->
-                        <div class="mt-6 text-center">
-                            <p class="text-gray-600 text-sm">
+                        <div class="mt-3 sm:mt-4 lg:mt-6 text-center">
+                            <p class="text-gray-600 text-xs sm:text-sm">
                                 Already have an Account?
                                 <a href="{{ route('login') }}"
                                     class="text-blue-600 hover:text-blue-700 font-medium">Sign In</a>
                             </p>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Branding Header (Visible only on mobile) -->
+                <div class="lg:hidden w-full bg-gradient-to-br from-blue-700 to-blue-800 py-3 sm:py-4 lg:py-6 px-2 sm:px-3 lg:px-4 text-center text-white">
+                    <div class="flex flex-col items-center">
+                        <!-- Mobile Logo -->
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1.5 sm:mb-2 lg:mb-3 backdrop-blur-sm">
+                            <span class="text-lg sm:text-xl lg:text-2xl font-bold text-white">D</span>
+                        </div>
+                        
+                        <!-- Mobile App Name -->
+                        <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 sm:mb-2 tracking-wider">DeepMath</h1>
+                        
+                        <!-- Mobile Tagline -->
+                        <p class="text-xs sm:text-sm text-blue-100">Deep Learning Matematika</p>
                     </div>
                 </div>
             </div>
