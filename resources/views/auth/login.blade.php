@@ -213,13 +213,13 @@
 
                         <!-- Tagline -->
                         <p class="text-xl font-medium mb-6 text-blue-100">
-                            Deep Learning Matematika
+                            Deep Learning
                         </p>
 
                         <!-- Description -->
                         <p class="text-lg text-blue-200 leading-relaxed max-w-md mb-8">
-                            Platform pembelajaran matematika yang menggabungkan teknologi modern dengan metode
-                            pembelajaran yang efektif untuk mengoptimalkan pemahaman konsep matematika.
+                            Platform pembelajaran yang menggabungkan teknologi modern dengan metode
+                            pembelajaran yang efektif untuk mengoptimalkan pemahaman konsep materi pemebelajaran.
                         </p>
 
                         <!-- Features -->
@@ -234,7 +234,7 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <p class="text-sm text-blue-100">AI-Powered Learning</p>
+                                <p class="text-sm text-blue-100">Flexible Learning</p>
                             </div>
 
                             <div class="text-center">
